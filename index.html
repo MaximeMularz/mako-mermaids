@@ -119,7 +119,7 @@ game.physics.arcade.overlap(ariel, items, collect, null, this);
         ariel.animations.play('down', 6, true);
     }
     
-    else if (game.input.mousePointer.isDown)
+    else if (game.input.mousePointer.isDown && game.input.pointer1.isDown)
     {
         console.log("hello");
         //  400 is the speed it will move towards the mouse
@@ -136,7 +136,7 @@ game.physics.arcade.overlap(ariel, items, collect, null, this);
             ariel.body.velocity.setTo(0, 0);
         }
     }
-    
+      
     else {
         ariel.body.velocity.y = 0;
         ariel.body.velocity.x = 0;
