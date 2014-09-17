@@ -8,11 +8,35 @@
 	<meta name="mobile-web-app-capable" content="yes">
         <title>La petite sirène</title>
         <script src="js/phaser.js"></script>
+        
+    <style>
+	canvas {
+		display: block;
+		position: absolute;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	</style>
     </head>
     
     <body>
         <script type="text/javascript">
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, 'little-mermaid', { preload: preload, create: create, update : update,render : render });
+    
+	width = window.innerWidth;
+	height = window.innerHeight;
+            
+    if(height > 576) {
+       height = 576; 
+    } 
+    
+    
+     
+            
+            
+        var game = new Phaser.Game(width, height, Phaser.AUTO, 'little-mermaid', { preload: preload, create: create, update : update,render : render });
 
 function preload() {
 
@@ -123,7 +147,7 @@ game.physics.arcade.overlap(ariel, items, collect, null, this);
     {
         console.log("hello");
         //  400 is the speed it will move towards the mouse
-        game.physics.arcade.moveToPointer(ariel, 200);
+        game.physics.arcade.moveToPointer(ariel, 150);
         if(ariel.body.velocity.x > 0) {
             ariel.animations.play('right', 6, true);
         } else {
