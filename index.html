@@ -118,18 +118,17 @@ game.physics.arcade.overlap(ariel, items, collect, null, this);
         ariel.body.velocity.y = 50;
         ariel.animations.play('down', 6, true);
     }
-    else {
-        ariel.body.velocity.y = 0;
-        ariel.body.velocity.x = 0;
-        ariel.animations.stop;
-    }
-      
-   
-    /*//  only move when you click
-    if (game.input.mousePointer.isDown)
+    
+    else if (game.input.mousePointer.isDown)
     {
+        console.log("hello");
         //  400 is the speed it will move towards the mouse
         game.physics.arcade.moveToPointer(ariel, 200);
+        if(ariel.body.velocity.x > 0) {
+            ariel.animations.play('right', 6, true);
+        } else {
+            ariel.animations.play('left', 6, true);
+        }
 
         //  if it's overlapping the mouse, don't move any more
         if (Phaser.Rectangle.contains(ariel.body, game.input.x, game.input.y))
@@ -137,12 +136,16 @@ game.physics.arcade.overlap(ariel, items, collect, null, this);
             ariel.body.velocity.setTo(0, 0);
         }
     }
-    else
-    {
-        ariel.body.velocity.setTo(0, 0);
-    }*/
     
-        
+    else {
+        ariel.body.velocity.y = 0;
+        ariel.body.velocity.x = 0;
+        ariel.animations.stop;
+    }
+      
+   
+    
+    
     
     
 }
