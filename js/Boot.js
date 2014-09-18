@@ -35,5 +35,29 @@ MakoMermaidsGame.Boot.prototype = {
         }
         
         this.state.start('Preloader');
+    },
+    
+    gameResized: function (width, height) {
+
+        //  This could be handy if you need to do any extra processing if the game resizes.
+        //  A resize could happen if for example swapping orientation on a device or resizing the browser window.
+        //  Note that this callback is only really useful if you use a ScaleMode of RESIZE and place it inside your main game state.
+
+    },
+    
+     enterIncorrectOrientation: function () {
+
+        BasicGame.orientated = false;
+
+        document.getElementById('orientation').style.display = 'block';
+
+    },
+
+    leaveIncorrectOrientation: function () {
+
+        BasicGame.orientated = true;
+
+        document.getElementById('orientation').style.display = 'none';
+
     }
 }
