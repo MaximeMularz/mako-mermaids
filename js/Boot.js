@@ -1,4 +1,11 @@
-var MakoMermaidsGame = MakoMermaidsGame || {};
+//var MakoMermaidsGame = MakoMermaidsGame || {};
+
+var MakoMermaidsGame = {
+
+  /* Your game can check BasicGame.orientated in internal loops to know if it should pause or not */
+    orientated: false
+
+};
 
 MakoMermaidsGame.Boot = function(game) {};
 
@@ -47,7 +54,7 @@ MakoMermaidsGame.Boot.prototype = {
     
      enterIncorrectOrientation: function () {
 
-        BasicGame.orientated = false;
+        MakoMermaidsGame.orientated = false;
 
         document.getElementById('orientation').style.display = 'block';
 
@@ -55,7 +62,7 @@ MakoMermaidsGame.Boot.prototype = {
 
     leaveIncorrectOrientation: function () {
 
-        BasicGame.orientated = true;
+        MakoMermaidsGame.orientated = true;
 
         document.getElementById('orientation').style.display = 'none';
 
