@@ -2,42 +2,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="mobile-web-app-capable" content="yes">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="robots" content="noindex,nofollow" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-title" content="Phaser App">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
         <title>La petite sirène</title>
         <script src="js/phaser.js"></script>
-        
-    <style>
-	canvas {
-		display: block;
-		position: absolute;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-	}
-	</style>
-    </head>
+        <script src="js/Boot.js"></script>
+        <script src="js/Preloader.js"></script>
+        <script src="js/MainMenu.js"></script>
+        <script src="js/Game.js"></script>
+        <style> body { margin: 0; background: #333; } </style>
+        </head>
     
     <body>
+        
+        <div id="game"></div>
+	   <div id="orientation"></div>
+        <!-- include the main game file -->
+		<script src="js/main.js"></script>
         <script type="text/javascript">
     
-	width = window.innerWidth;
-	height = window.innerHeight;
-            
-    if(height > 576) {
-       height = 576; 
-    } 
-    
-    
-     
-            
-            
-        var game = new Phaser.Game(width, height, Phaser.AUTO, 'little-mermaid', { preload: preload, create: create, update : update,render : render });
-
+	
 function preload() {
 
     game.load.spritesheet('ariel', 'assets/ariel2.png', 32, 48, 16);
