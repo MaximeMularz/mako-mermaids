@@ -58,10 +58,10 @@ MakoMermaidsGame.Game.prototype = {
     this.items.enableBody = true;
     this.items.physicsBodyType = Phaser.Physics.ARCADE;
         
-    var result = findObjectsByType('coin',this.map, 'coins');
+    var result = this.findObjectsByType('coin',this.map, 'coins');
         
     result.forEach(function(element){
-      createFromTiledObject(element,this.items);
+      this.createFromTiledObject(element,this.items);
     }, this);
     },
     
