@@ -27,7 +27,7 @@ MakoMermaidsGame.Preloader.prototype = {
 	update: function () {
         if(this.cache.isSoundDecoded('sfx') && this.ready == false) {
             this.ready = true;
-            this.state.start('MainMenu');
+            this.state.start('Game');
         }
 	}
 };

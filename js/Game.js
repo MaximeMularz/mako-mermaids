@@ -1,6 +1,6 @@
 MakoMermaidsGame.Game = function(game) {
     this.fx;
-    this.ariel;
+    ariel = null;
     this.map;
     this.layer;
     this.cursors;
@@ -10,6 +10,7 @@ MakoMermaidsGame.Game = function(game) {
 MakoMermaidsGame.Game.prototype = {
     
     create: function() {
+            
     this.fx = this.add.audio('sfx');
     this.fx.addMarker('ping', 10, 1.0);
     
@@ -35,24 +36,21 @@ MakoMermaidsGame.Game.prototype = {
     
     this.layer.resizeWorld();
         
-    this.ariel = this.add.sprite(200, 200, 'ariel');
-    this.physics.arcade.enable(this.ariel);
+    ariel = this.add.sprite(200, 200, 'ariel');
+    this.physics.arcade.enable(ariel);
 
-    this.camera.follow(this.ariel);
+    this.camera.follow(ariel);
         
     //Set Ariel animations
-    this.ariel.animations.add('wait',[0]);
-    this.ariel.animations.add('down',[0,1,2,3]);
-    this.ariel.animations.add('up',[12,13,14,15]);
-    this.ariel.animations.add('left',[4,5,6,7]);
-    this.ariel.animations.add('right',[8,9,10,11]);
+    ariel.animations.add('wait',[0]);
+    ariel.animations.add('down',[0,1,2,3]);
+    ariel.animations.add('up',[12,13,14,15]);
+    ariel.animations.add('left',[4,5,6,7]);
+    ariel.animations.add('right',[8,9,10,11]);
     
     // Wait
-    this.ariel.animations.play('down', 6, true);
+    ariel.animations.play('down', 6, true);
         
-    this.cursors = this.input.keyboard.createCursorKeys();
-    window.addEventListener("deviceorientation", this.handleOrientation, true);
-    
     //create items
     this.items = this.add.group();
     this.items.enableBody = true;
@@ -63,6 +61,9 @@ MakoMermaidsGame.Game.prototype = {
     result.forEach(function(element){
       this.createFromTiledObject(element,this.items);
     }, this);
+        
+    this.cursors = this.input.keyboard.createCursorKeys();
+    window.addEventListener("deviceorientation", this.handleOrientation, true);    
     },
     
     
@@ -100,70 +101,70 @@ MakoMermaidsGame.Game.prototype = {
         this.fx.play('ping');
     },
     
-    
+     handleOrientation: function(e) {
+		
+        var x = e.gamma; // range [-90,90]
+		var y = e.beta;  // range [-180,180]
+		ariel.body.velocity.y = y * 50;
+        ariel.body.velocity.x = x * 50;
+            
         
+         console.log(e);
+               },
+                
     update: function() {
-        this.physics.arcade.collide(this.ariel,this.layer);
-        this.physics.arcade.overlap(this.ariel, this.items, this.collect, null, this);
+        this.physics.arcade.collide(ariel,this.layer);
+        this.physics.arcade.overlap(ariel, this.items, this.collect, null, this);
     
     //player movement
-    this.ariel.body.velocity.y = 0;
-    this.ariel.body.velocity.x = 0;
+    ariel.body.velocity.y = 0;
+    ariel.body.velocity.x = 0;
            
       if (this.cursors.left.isDown)
     {
-        this.ariel.body.velocity.x = -50;
-        this.ariel.animations.play('left', 6, true);
+        ariel.body.velocity.x = -50;
+        ariel.animations.play('left', 6, true);
     }
     else if (this.cursors.right.isDown)
     {
-        this.ariel.body.velocity.x = 50;
-        this.ariel.body.velocity.y = 0;
-        this.ariel.animations.play('right', 6, true);
+        ariel.body.velocity.x = 50;
+        ariel.body.velocity.y = 0;
+        ariel.animations.play('right', 6, true);
     }
     
     else if (this.cursors.up.isDown)
     {
-         this.ariel.body.velocity.y = -50;
-        this.ariel.animations.play('up', 6, true);
+        ariel.body.velocity.y = -50;
+        ariel.animations.play('up', 6, true);
     }
     else if (this.cursors.down.isDown)
     {
-        this.ariel.body.velocity.y = 50;
-        this.ariel.animations.play('down', 6, true);
+        ariel.body.velocity.y = 50;
+        ariel.animations.play('down', 6, true);
     }
     
     else if (this.input.mousePointer.isDown || this.input.pointer1.isDown)
     {
         console.log("hello");
         //  400 is the speed it will move towards the mouse
-        this.physics.arcade.moveToPointer(this.ariel, 150);
-        if(this.ariel.body.velocity.x > 0) {
-            this.ariel.animations.play('right', 6, true);
+        this.physics.arcade.moveToPointer(ariel, 150);
+        if(ariel.body.velocity.x > 0) {
+            ariel.animations.play('right', 6, true);
         } else {
-           this. ariel.animations.play('left', 6, true);
+           ariel.animations.play('left', 6, true);
         }
 
         //  if it's overlapping the mouse, don't move any more
         if (Phaser.Rectangle.contains(this.ariel.body, this.input.x, this.input.y))
         {
-            this.ariel.body.velocity.setTo(0, 0);
+            ariel.body.velocity.setTo(0, 0);
         }
     }
             
     else {
-        this.ariel.body.velocity.y = 0;
-        this.ariel.body.velocity.x = 0;
-        this.ariel.animations.stop;
+        ariel.body.velocity.y = 0;
+        ariel.body.velocity.x = 0;
+            ariel.animations.stop;
     }
-    },
-    handleOrientation: function(e) {
-		console.log("maxime");
-        var x = e.gamma; // range [-90,90]
-		var y = e.beta;  // range [-180,180]
-		this.ariel.body.velocity.x += x/2;
-		this.ariel.body.velocity.y += y;
-	}
-    
-  
-};
+    }
+    };
