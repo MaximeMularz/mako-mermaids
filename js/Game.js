@@ -105,9 +105,9 @@ MakoMermaidsGame.Game.prototype = {
 		
         var x = e.gamma; // range [-90,90]
 		var y = e.beta;  // range [-180,180]
-		ariel.body.velocity.y = y * 50;
-        ariel.body.velocity.x = x * 50;
-            
+		
+            ariel.body.velocity.x += x/2;
+		ariel.body.velocity.y += y;
         
          console.log(e);
                },
