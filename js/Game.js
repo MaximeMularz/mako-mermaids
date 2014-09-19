@@ -158,10 +158,11 @@ MakoMermaidsGame.Game.prototype = {
     }
     },
     handleOrientation: function(e) {
-		var x = e.gamma; // range [-90,90]
+		console.log("maxime");
+        var x = e.gamma; // range [-90,90]
 		var y = e.beta;  // range [-180,180]
-		this.ariel.velocity.x += x/2;
-		this.ariel.velocity.y += y;
+		this.ariel.body.velocity.x += x/2;
+		this.ariel.body.velocity.y += y;
 	}
     
   
