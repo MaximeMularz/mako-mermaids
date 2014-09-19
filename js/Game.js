@@ -63,7 +63,7 @@ MakoMermaidsGame.Game.prototype = {
     }, this);
         
     this.cursors = this.input.keyboard.createCursorKeys();
-    window.addEventListener("deviceorientation", this.handleOrientation, true);    
+    //window.addEventListener("deviceorientation", this.handleOrientation, true);    
     },
     
     
@@ -106,10 +106,10 @@ MakoMermaidsGame.Game.prototype = {
         var x = e.gamma; // range [-90,90]
 		var y = e.beta;  // range [-180,180]
 		
-            ariel.body.velocity.x += x/2;
+        ariel.body.velocity.x += x/2;
 		ariel.body.velocity.y += y;
         
-         console.log(e);
+        
                },
                 
     update: function() {
@@ -145,7 +145,7 @@ MakoMermaidsGame.Game.prototype = {
     
     else if (this.input.mousePointer.isDown || this.input.pointer1.isDown)
     {
-        console.log("hello");
+        
         //  400 is the speed it will move towards the mouse
         this.physics.arcade.moveToPointer(ariel, 150);
         if(ariel.body.velocity.x > 0) {
