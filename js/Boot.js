@@ -29,7 +29,8 @@ MakoMermaidsGame.Boot.prototype = {
         }
         else
         {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            // Stretch to fill
+    this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
             this.scale.setMinMax(480, 260, 1024, 768);
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
@@ -38,6 +39,7 @@ MakoMermaidsGame.Boot.prototype = {
             this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
             this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
             this.scale.setScreenSize(true);
+            this.scale.startFullScreen(false);
             this.scale.refresh();
         }
         
