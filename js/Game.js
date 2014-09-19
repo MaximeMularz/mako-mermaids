@@ -1,6 +1,6 @@
 MakoMermaidsGame.Game = function(game) {
     this.fx;
-    this.ariel = null;
+    this.ariel;
     this.map;
     this.layer;
     this.cursors;
@@ -36,7 +36,7 @@ MakoMermaidsGame.Game.prototype = {
     
     this.layer.resizeWorld();
         
-    this.ariel = this.add.sprite(200, 200, 'this.ariel');
+    this.ariel = this.add.sprite(200, 200, 'ariel');
     this.physics.arcade.enable(this.ariel);
 
     this.camera.follow(this.ariel);
@@ -96,7 +96,7 @@ MakoMermaidsGame.Game.prototype = {
       });
   },
     
-     collect : function (this.ariel, collectable) {
+     collect : function (ariel, collectable) {
        collectable.destroy();
         this.fx.play('ping');
     },
