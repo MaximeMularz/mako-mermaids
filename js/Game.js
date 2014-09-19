@@ -1,6 +1,6 @@
 MakoMermaidsGame.Game = function(game) {
     this.fx;
-    ariel = null;
+    this.ariel = null;
     this.map;
     this.layer;
     this.cursors;
@@ -36,20 +36,20 @@ MakoMermaidsGame.Game.prototype = {
     
     this.layer.resizeWorld();
         
-    ariel = this.add.sprite(200, 200, 'ariel');
-    this.physics.arcade.enable(ariel);
+    this.ariel = this.add.sprite(200, 200, 'this.ariel');
+    this.physics.arcade.enable(this.ariel);
 
-    this.camera.follow(ariel);
+    this.camera.follow(this.ariel);
         
-    //Set Ariel animations
-    ariel.animations.add('wait',[0]);
-    ariel.animations.add('down',[0,1,2,3]);
-    ariel.animations.add('up',[12,13,14,15]);
-    ariel.animations.add('left',[4,5,6,7]);
-    ariel.animations.add('right',[8,9,10,11]);
+    //Set this.ariel animations
+    this.ariel.animations.add('wait',[0]);
+    this.ariel.animations.add('down',[0,1,2,3]);
+    this.ariel.animations.add('up',[12,13,14,15]);
+    this.ariel.animations.add('left',[4,5,6,7]);
+    this.ariel.animations.add('right',[8,9,10,11]);
     
     // Wait
-    ariel.animations.play('down', 6, true);
+    this.ariel.animations.play('down', 6, true);
         
     //create items
     this.items = this.add.group();
@@ -96,7 +96,7 @@ MakoMermaidsGame.Game.prototype = {
       });
   },
     
-     collect : function (ariel, collectable) {
+     collect : function (this.ariel, collectable) {
        collectable.destroy();
         this.fx.play('ping');
     },
@@ -106,65 +106,65 @@ MakoMermaidsGame.Game.prototype = {
         var x = e.gamma; // range [-90,90]
 		var y = e.beta;  // range [-180,180]
 		
-        ariel.body.velocity.x += x/2;
-		ariel.body.velocity.y += y;
+        this.ariel.body.velocity.x += x/2;
+		this.ariel.body.velocity.y += y;
         
         
                },
                 
     update: function() {
-        this.physics.arcade.collide(ariel,this.layer);
-        this.physics.arcade.overlap(ariel, this.items, this.collect, null, this);
+        this.physics.arcade.collide(this.ariel,this.layer);
+        this.physics.arcade.overlap(this.ariel, this.items, this.collect, null, this);
     
     //player movement
-    ariel.body.velocity.y = 0;
-    ariel.body.velocity.x = 0;
+    this.ariel.body.velocity.y = 0;
+    this.ariel.body.velocity.x = 0;
            
       if (this.cursors.left.isDown)
     {
-        ariel.body.velocity.x = -50;
-        ariel.animations.play('left', 6, true);
+        this.ariel.body.velocity.x = -50;
+        this.ariel.animations.play('left', 6, true);
     }
     else if (this.cursors.right.isDown)
     {
-        ariel.body.velocity.x = 50;
-        ariel.body.velocity.y = 0;
-        ariel.animations.play('right', 6, true);
+        this.ariel.body.velocity.x = 50;
+        this.ariel.body.velocity.y = 0;
+        this.ariel.animations.play('right', 6, true);
     }
     
     else if (this.cursors.up.isDown)
     {
-        ariel.body.velocity.y = -50;
-        ariel.animations.play('up', 6, true);
+        this.ariel.body.velocity.y = -50;
+        this.ariel.animations.play('up', 6, true);
     }
     else if (this.cursors.down.isDown)
     {
-        ariel.body.velocity.y = 50;
-        ariel.animations.play('down', 6, true);
+        this.ariel.body.velocity.y = 50;
+        this.ariel.animations.play('down', 6, true);
     }
     
     else if (this.input.mousePointer.isDown || this.input.pointer1.isDown)
     {
         
         //  400 is the speed it will move towards the mouse
-        this.physics.arcade.moveToPointer(ariel, 150);
-        if(ariel.body.velocity.x > 0) {
-            ariel.animations.play('right', 6, true);
+        this.physics.arcade.moveToPointer(this.ariel, 150);
+        if(this.ariel.body.velocity.x > 0) {
+            this.ariel.animations.play('right', 6, true);
         } else {
-           ariel.animations.play('left', 6, true);
+           this.ariel.animations.play('left', 6, true);
         }
 
         //  if it's overlapping the mouse, don't move any more
         if (Phaser.Rectangle.contains(this.ariel.body, this.input.x, this.input.y))
         {
-            ariel.body.velocity.setTo(0, 0);
+            this.ariel.body.velocity.setTo(0, 0);
         }
     }
             
     else {
-        ariel.body.velocity.y = 0;
-        ariel.body.velocity.x = 0;
-            ariel.animations.stop;
+        this.ariel.body.velocity.y = 0;
+        this.ariel.body.velocity.x = 0;
+            this.ariel.animations.stop;
     }
     }
     };
