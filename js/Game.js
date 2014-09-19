@@ -51,7 +51,7 @@ MakoMermaidsGame.Game.prototype = {
     this.ariel.animations.play('down', 6, true);
         
     this.cursors = this.input.keyboard.createCursorKeys();
-    
+    window.addEventListener("deviceorientation", this.handleOrientation, true);
     
     //create items
     this.items = this.add.group();
@@ -103,8 +103,8 @@ MakoMermaidsGame.Game.prototype = {
     
         
     update: function() {
-       this.physics.arcade.collide(this.ariel,this.layer);
-this.physics.arcade.overlap(this.ariel, this.items, this.collect, null, this);
+        this.physics.arcade.collide(this.ariel,this.layer);
+        this.physics.arcade.overlap(this.ariel, this.items, this.collect, null, this);
     
     //player movement
     this.ariel.body.velocity.y = 0;
@@ -150,12 +150,19 @@ this.physics.arcade.overlap(this.ariel, this.items, this.collect, null, this);
             this.ariel.body.velocity.setTo(0, 0);
         }
     }
-      
+            
     else {
         this.ariel.body.velocity.y = 0;
         this.ariel.body.velocity.x = 0;
         this.ariel.animations.stop;
     }
-    }
+    },
+    handleOrientation: function(e) {
+		var x = e.gamma; // range [-90,90]
+		var y = e.beta;  // range [-180,180]
+		this.ariel.velocity.x += x/2;
+		this.ariel.velocity.y += y;
+	}
+    
   
 };
